@@ -1,0 +1,2081 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Рекруто · Младший рекрутер удалённо · до 80 000 ₽</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     Tokens (заполняются Tweaks)
+     ============================================================ */
+  :root{
+    --blue: #2567fc;
+    --blue-2: #5199ff;
+    --blue-deep: #0a1b3d;
+    --ink: #0a0c14;
+    --ink-2: #1c2030;
+    --muted: #6b7180;
+    --paper: #ffffff;
+    --paper-2: #f4f6fb;
+    --line: rgba(10, 12, 20, 0.08);
+    --line-soft: rgba(10, 12, 20, 0.05);
+    --radius: 18px;
+    --radius-sm: 12px;
+    --maxw: 1200px;
+    --pad-x: 20px;
+    --section-y: 80px;
+    --font: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+  @media (min-width:760px){
+    :root{ --pad-x: 40px; --section-y: 120px; }
+  }
+
+  *,*::before,*::after{ box-sizing: border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family: var(--font);
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: 1.45;
+    overflow-x: hidden;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color: inherit; }
+  button{ font-family: inherit; }
+  ::selection{ background: var(--blue); color:#fff; }
+
+  .wrap{ width:100%; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad-x); }
+
+  /* Reveal */
+  .reveal{ opacity:0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; transition-delay: var(--rd, 0ms); }
+  .reveal.in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+  }
+
+  /* ============================================================
+     HEADER
+     ============================================================ */
+  .topbar{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(10,12,20,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .topbar-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    height: 64px; gap: 16px;
+  }
+  .topbar img{ height: 22px; width: auto; }
+  @media (min-width:760px){
+    .topbar-inner{ height: 76px; }
+    .topbar img{ height: 26px; }
+  }
+  .hh-link{
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 10px 14px;
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+    font-size: 13px; font-weight: 600;
+    text-decoration: none;
+    transition: background .2s ease, border-color .2s ease;
+    white-space: nowrap;
+  }
+  .hh-link:hover{ background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.32); }
+  .hh-link svg{ width:14px; height:14px; }
+  @media (max-width:480px){
+    .hh-link span{ display:none; }
+    .hh-link{ padding: 10px; }
+  }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero{
+    position: relative;
+    background: var(--paper);
+    padding-top: 56px;
+    padding-bottom: var(--section-y);
+    overflow: hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      radial-gradient(900px 520px at 90% -10%, rgba(37,103,252,0.10), transparent 60%),
+      radial-gradient(700px 460px at -5% 30%, rgba(81,153,255,0.10), transparent 60%);
+    pointer-events:none;
+  }
+  .hero-inner{ position:relative; }
+  .eyebrow{
+    display: inline-flex; align-items:center; gap:10px;
+    padding: 8px 14px;
+    border: 1px solid var(--line);
+    background: var(--paper-2);
+    border-radius: 999px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .eyebrow .dot{ width:8px; height:8px; border-radius:50%; background: var(--blue); box-shadow: 0 0 0 4px rgba(37,103,252,0.18); animation: pulse 2.4s infinite ease-out; }
+  @keyframes pulse{
+    0%{ box-shadow: 0 0 0 0 rgba(37,103,252,0.45); }
+    70%{ box-shadow: 0 0 0 8px rgba(37,103,252,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(37,103,252,0); }
+  }
+
+  .h1{
+    font-size: clamp(36px, 7vw, 84px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+    margin: 22px 0 0;
+    text-wrap: balance;
+  }
+  .h1 .accent{ color: var(--blue); }
+  .h1 .accent-bg{
+    background: linear-gradient(180deg, transparent 65%, rgba(37,103,252,0.22) 65%);
+    padding: 0 4px;
+  }
+  .h1 .sm{ display:block; font-size: 0.42em; font-weight: 500; color: var(--muted); margin-bottom: 14px; letter-spacing: 0; text-transform: none; }
+
+  .hero-sub{
+    margin: 24px 0 0;
+    font-size: clamp(15px, 2vw, 19px);
+    color: var(--muted);
+    max-width: 56ch;
+    line-height: 1.5;
+  }
+  .hero-sub b{ color: var(--ink); font-weight: 600; }
+
+  .hero-meta{
+    margin-top: 28px;
+    display:flex; flex-wrap: wrap; gap: 10px;
+  }
+  .chip{
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 9px 14px;
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 13px; font-weight: 600;
+    color: var(--ink);
+  }
+  .chip svg{ width:14px; height:14px; color: var(--blue); }
+
+  .hero-actions{
+    margin-top: 36px;
+    display: flex; flex-wrap: wrap; gap: 12px; align-items:center;
+  }
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    padding: 16px 24px;
+    border-radius: 14px;
+    font-size: 15px; font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: transform .15s ease, box-shadow .2s ease, background .2s ease, color .2s ease, border-color .2s ease;
+    white-space: nowrap;
+  }
+  .btn-primary{
+    background: var(--blue); color: #fff;
+    box-shadow: 0 10px 30px -8px rgba(37,103,252,0.55);
+  }
+  .btn-primary:hover{ transform: translateY(-1px); box-shadow: 0 14px 36px -8px rgba(37,103,252,0.7); }
+  .btn-ghost{
+    background: transparent; color: var(--ink);
+    border-color: var(--line);
+  }
+  .btn-ghost:hover{ border-color: var(--ink); }
+
+  .hero-fast{
+    margin-top: 18px;
+    font-size: 13px; color: var(--muted);
+  }
+  .hero-fast b{ color: var(--ink); font-weight: 600; }
+
+  /* hero side: schedule preview */
+  .hero-grid{
+    display: grid; gap: 48px; align-items: center;
+    grid-template-columns: 1fr;
+    margin-top: 24px;
+  }
+  @media (min-width: 980px){
+    .hero-grid{ grid-template-columns: 1.15fr 0.85fr; gap: 64px; }
+  }
+
+  .schedule-card{
+    position: relative;
+    background: linear-gradient(180deg, #0a1b3d 0%, #0a0c14 100%);
+    color: #fff;
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 30px 60px -20px rgba(10,27,61,0.45);
+    overflow:hidden;
+  }
+  .schedule-card::after{
+    content:""; position:absolute; inset:auto -40% -40% auto; width: 80%; aspect-ratio: 1;
+    background: radial-gradient(circle at center, rgba(37,103,252,0.6), transparent 60%);
+    pointer-events: none;
+  }
+  .sch-head{
+    display:flex; justify-content: space-between; align-items: center;
+    margin-bottom: 16px;
+    position: relative; z-index: 1;
+  }
+  .sch-title{ font-size: 15px; font-weight: 700; }
+  .sch-meta{ font-size: 12px; color: rgba(255,255,255,0.5); }
+  .sch-grid{
+    display: grid;
+    grid-template-columns: 36px repeat(7, 1fr);
+    gap: 6px;
+    position: relative; z-index: 1;
+  }
+  .sch-day{
+    font-size: 11px; color: rgba(255,255,255,0.5); text-align:center;
+    padding: 6px 0;
+    font-weight: 600;
+  }
+  .sch-hour{
+    font-size: 10px; color: rgba(255,255,255,0.35);
+    display:flex; align-items:center; justify-content:flex-end; padding-right: 6px;
+  }
+  .sch-cell{
+    aspect-ratio: 1.1;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.04);
+    transition: background .2s ease;
+  }
+  .sch-cell.on{
+    background: var(--blue);
+    box-shadow: 0 0 0 1px rgba(81,153,255,0.4) inset;
+  }
+  .sch-cell.maybe{ background: rgba(37,103,252,0.30); }
+  .sch-footer{
+    margin-top: 18px;
+    display:flex; gap: 14px; flex-wrap: wrap;
+    font-size: 12px; color: rgba(255,255,255,0.65);
+    position: relative; z-index: 1;
+  }
+  .sch-footer .legend{ display:inline-flex; align-items:center; gap: 6px; }
+  .sch-footer .legend i{ width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+  .sch-footer .legend.on i{ background: var(--blue); }
+  .sch-footer .legend.maybe i{ background: rgba(37,103,252,0.30); }
+  .sch-footer .legend.off i{ background: rgba(255,255,255,0.10); }
+
+  .sch-caption{
+    margin-top: 14px;
+    font-size: 13px; color: rgba(255,255,255,0.8);
+    line-height: 1.5;
+    position: relative; z-index: 1;
+  }
+  .sch-caption b{ color: #fff; }
+
+  /* ============================================================
+     SECTION HEAD
+     ============================================================ */
+  section{ position: relative; }
+  .section-head{
+    margin-bottom: 48px;
+  }
+  .h2{
+    font-size: clamp(28px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 14px 0 0;
+    text-wrap: balance;
+  }
+  .h2 .accent{ color: var(--blue); }
+  .h3{
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .sub{
+    margin: 18px 0 0;
+    font-size: clamp(15px, 1.5vw, 18px);
+    color: var(--muted);
+    max-width: 60ch;
+    line-height: 1.5;
+  }
+
+  /* ============================================================
+     FLEX (гибкий график) SECTION
+     ============================================================ */
+  .flex-sec{
+    padding-block: var(--section-y);
+    background: var(--paper-2);
+    border-top: 1px solid var(--line);
+  }
+  .flex-grid{
+    display: grid; gap: 16px;
+    grid-template-columns: 1fr;
+    margin-top: 36px;
+  }
+  @media (min-width: 760px){
+    .flex-grid{ grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  }
+  @media (min-width: 980px){
+    .flex-grid{ grid-template-columns: repeat(4, 1fr); }
+  }
+  .flex-card{
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 26px 24px;
+    display: flex; flex-direction: column; gap: 14px;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .flex-card:hover{ transform: translateY(-2px); border-color: rgba(37,103,252,0.4); box-shadow: 0 18px 40px -22px rgba(37,103,252,0.4); }
+  .flex-card .ico{
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: rgba(37,103,252,0.10);
+    color: var(--blue);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .flex-card .ico svg{ width: 22px; height: 22px; }
+  .flex-card-h{ font-size: 17px; font-weight: 700; line-height: 1.2; }
+  .flex-card-p{ font-size: 14px; color: var(--muted); line-height: 1.5; margin: 0; }
+  .flex-card-p b{ color: var(--ink); font-weight: 600; }
+
+  /* ============================================================
+     STATS (о компании)
+     ============================================================ */
+  .stats-sec{
+    padding-block: var(--section-y);
+  }
+  .stats-grid{
+    display: grid; gap: 16px;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 32px;
+  }
+  @media (min-width: 760px){
+    .stats-grid{ grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  }
+  .stat{
+    border-top: 1px solid var(--ink);
+    padding-top: 16px;
+  }
+  .stat-num{
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .stat-num .suf{ font-size: 0.5em; color: var(--blue); margin-left: 4px; font-weight: 700; }
+  .stat-lab{
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  .badges{
+    margin-top: 48px;
+  }
+  .acc-note{
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 12px 18px;
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 13px; color: var(--muted); line-height: 1.4;
+  }
+  .acc-note svg{ width: 16px; height: 16px; color: var(--blue); flex-shrink: 0; }
+  @media (max-width: 560px){
+    .acc-note{ border-radius: 14px; align-items: flex-start; }
+  }
+
+  /* ============================================================
+     WORK (что вы делаете)
+     ============================================================ */
+  .work-sec{
+    padding-block: var(--section-y);
+    background: var(--ink);
+    color: #fff;
+  }
+  .work-sec .sub{ color: rgba(255,255,255,0.65); }
+  .work-grid{
+    display: grid; gap: 16px;
+    grid-template-columns: 1fr;
+    margin-top: 40px;
+    counter-reset: workstep;
+  }
+  @media (min-width:760px){
+    .work-grid{ grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  }
+  .work-card{
+    background: var(--ink-2);
+    border-radius: var(--radius);
+    padding: 28px;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.06);
+    counter-increment: workstep;
+  }
+  .work-card::before{
+    content: "0" counter(workstep);
+    position: absolute; top: 18px; right: 22px;
+    font-size: 44px; font-weight: 800; line-height: 1;
+    color: rgba(255,255,255,0.06);
+    letter-spacing: -0.02em;
+  }
+  .work-h{ font-size: 19px; font-weight: 700; margin: 0; line-height: 1.2; }
+  .work-p{ font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.55; margin: 12px 0 0; }
+  .work-p b{ color: #fff; font-weight: 600; }
+
+  .work-quote{
+    margin-top: 56px;
+    padding: 32px 28px;
+    border-left: 3px solid var(--blue);
+    background: rgba(255,255,255,0.03);
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
+  .work-quote-text{ font-size: clamp(18px, 2.4vw, 24px); font-weight: 500; line-height: 1.35; margin:0; }
+  .work-quote-text em{ font-style: normal; color: var(--blue-2); }
+  .work-quote-author{ margin-top: 14px; font-size: 13px; color: rgba(255,255,255,0.5); }
+
+  /* ============================================================
+     GROWTH (карьерный рост)
+     ============================================================ */
+  .growth-sec{
+    padding-block: var(--section-y);
+  }
+  .growth-track{
+    margin-top: 48px;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  @media (min-width: 760px){
+    .growth-track{ grid-template-columns: repeat(3, 1fr); gap: 0; }
+    .growth-track::before{
+      content:""; position:absolute;
+      top: 32px; left: 10%; right: 10%; height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--blue) 60%, var(--line) 60%, var(--line));
+      z-index: 0;
+    }
+  }
+  .gstep{
+    position: relative; z-index: 1;
+    padding: 24px 16px 0;
+    text-align: left;
+  }
+  @media (min-width:760px){ .gstep{ text-align: center; padding: 24px 12px 0; } }
+  .gstep-bubble{
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 2px solid var(--blue);
+    color: var(--blue);
+    display:flex; align-items:center; justify-content:center;
+    font-weight: 800; font-size: 16px;
+    margin: 0 0 18px;
+  }
+  @media (min-width:760px){ .gstep-bubble{ margin: 0 auto 18px; } }
+  .gstep.done .gstep-bubble{ background: var(--blue); color: #fff; }
+  .gstep.future .gstep-bubble{ background: var(--paper); color: var(--muted); border-color: var(--line); }
+  .gstep-when{
+    font-size: 12px; font-weight: 700; letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 6px;
+  }
+  .gstep.future .gstep-when{ color: var(--muted); }
+  .gstep-h{ font-size: 16px; font-weight: 700; line-height: 1.2; margin: 0; }
+  .gstep-p{ font-size: 13px; color: var(--muted); margin: 8px 0 0; line-height: 1.45; }
+
+  /* ============================================================
+     SALARY CHIPS
+     ============================================================ */
+  .salary-chips{
+    margin-top: 40px;
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (min-width: 760px){
+    .salary-chips{ grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  }
+  .salary-chip{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 24px 22px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  }
+  .salary-chip:hover{ transform: translateY(-2px); border-color: rgba(37,103,252,0.3); box-shadow: 0 16px 36px -20px rgba(37,103,252,0.35); }
+  .sc-ico{
+    width: 40px; height: 40px;
+    background: rgba(37,103,252,0.10);
+    color: var(--blue);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sc-ico svg{ width: 20px; height: 20px; }
+  .salary-chip b{ font-size: 15px; font-weight: 700; line-height: 1.2; display: block; }
+  .salary-chip span{ font-size: 13px; color: var(--muted); line-height: 1.4; display: block; margin-top: 4px; }
+
+  .salary-sec{
+    padding-block: var(--section-y);
+    background: var(--paper-2);
+    border-top: 1px solid var(--line);
+  }
+  .salary-grid{
+    display: grid; gap: 32px;
+    grid-template-columns: 1fr;
+    margin-top: 40px;
+    align-items: start;
+  }
+  @media (min-width: 980px){
+    .salary-grid{ grid-template-columns: 1.1fr 0.9fr; gap: 48px; }
+  }
+  .salary-block{
+    background: var(--paper);
+    border-radius: var(--radius);
+    padding: 28px;
+    border: 1px solid var(--line);
+  }
+  .salary-num{
+    font-weight: 800; line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+  }
+  .salary-num .pre{ font-size: 14px; font-weight: 600; color: var(--muted); display: block; margin-bottom: 14px; letter-spacing: 0; text-transform: lowercase; }
+  .salary-amount{ display: block; font-size: clamp(40px, 7vw, 76px); white-space: nowrap; }
+  .salary-num .suf{ color: var(--blue); font-size: 0.55em; font-weight: 700; }
+  .salary-desc{ font-size: 14px; color: var(--muted); margin: 18px 0 0; line-height: 1.55; }
+
+  .salary-formula{
+    margin-top: 24px;
+    display: grid; gap: 10px;
+    grid-template-columns: 1fr;
+  }
+  .formula-row{
+    display:flex; justify-content: space-between; align-items: baseline;
+    padding: 12px 0;
+    border-top: 1px dashed var(--line);
+    font-size: 14px;
+  }
+  .formula-row:first-child{ border-top: none; padding-top: 4px; }
+  .formula-row .lab{ color: var(--muted); }
+  .formula-row .val{ font-weight: 700; color: var(--ink); }
+
+  .cond-list{
+    margin: 0; padding: 0;
+    list-style: none;
+    display: grid; gap: 14px;
+  }
+  .cond-list li{
+    display:flex; gap: 14px;
+    padding: 18px 20px;
+    background: var(--paper);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--line);
+  }
+  .cond-list .cli{
+    flex-shrink:0; width: 36px; height: 36px;
+    border-radius: 10px;
+    background: rgba(37,103,252,0.10);
+    color: var(--blue);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .cond-list .cli svg{ width: 18px; height: 18px; }
+  .cond-list b{ font-size: 14px; font-weight: 700; display: block; }
+  .cond-list p{ font-size: 13px; color: var(--muted); margin: 4px 0 0; line-height: 1.45; }
+
+  /* ============================================================
+     TECH (автоматизация и экспертность)
+     ============================================================ */
+  .tech-sec{
+    padding-block: var(--section-y);
+    background: var(--paper-2);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .tech-grid{
+    display: grid; gap: 16px;
+    grid-template-columns: 1fr;
+    margin-top: 40px;
+  }
+  @media (min-width: 760px){
+    .tech-grid{ grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  }
+  .tech-card{
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px 26px;
+    display: flex; flex-direction: column; gap: 14px;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .tech-card:hover{ transform: translateY(-2px); border-color: rgba(37,103,252,0.4); box-shadow: 0 20px 44px -22px rgba(37,103,252,0.4); }
+  .tech-card .t-ico{
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--blue), var(--blue-2));
+    color: #fff;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .tech-card .t-ico svg{ width: 22px; height: 22px; }
+  .tech-h{ font-size: 18px; font-weight: 700; line-height: 1.25; margin: 0; }
+  .tech-p{ font-size: 14px; color: var(--muted); line-height: 1.55; margin: 0; }
+  .tech-p b{ color: var(--ink); font-weight: 600; }
+
+  /* Showcase: Слотто mockup */
+  .tech-showcase{
+    margin-top: 24px;
+    display: grid; gap: 24px;
+    grid-template-columns: 1fr;
+    align-items: center;
+    background: var(--ink);
+    border-radius: 24px;
+    padding: 32px 28px;
+    overflow: hidden;
+    position: relative;
+  }
+  @media (min-width:980px){
+    .tech-showcase{ grid-template-columns: 0.9fr 1.1fr; gap: 40px; padding: 48px; }
+  }
+  .tech-showcase::before{
+    content:""; position:absolute; inset:0;
+    background: radial-gradient(900px 500px at 100% 100%, rgba(37,103,252,0.25), transparent 60%);
+    pointer-events:none;
+  }
+  .showcase-text{ position:relative; z-index:1; color: #fff; }
+  .showcase-eye{
+    display:inline-flex; align-items:center; gap: 8px;
+    padding: 6px 14px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 999px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+  }
+  .showcase-eye::before{ content:""; width:6px; height:6px; border-radius: 50%; background: var(--blue-2); }
+  .showcase-h{ font-size: clamp(22px, 3vw, 32px); font-weight: 700; margin: 14px 0 0; line-height: 1.15; letter-spacing: -0.01em; }
+  .showcase-p{ font-size: 14px; color: rgba(255,255,255,0.7); margin: 14px 0 0; line-height: 1.55; max-width: 44ch; }
+  .showcase-p b{ color: #fff; }
+  .showcase-img{
+    position: relative; z-index: 1;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.55);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .showcase-img img{
+    display:block; width:100%; height:auto;
+  }
+
+  /* Slotto mockup (CSS recreation) */
+  .slotto-mock{
+    position: relative; z-index: 1;
+    background: #ffffff;
+    color: #14121f;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06);
+    font-size: 11px;
+    line-height: 1.3;
+  }
+  .slm-top{
+    background: #14121f;
+    color: #fff;
+    padding: 8px 12px;
+    display:flex; align-items:center; gap: 14px;
+    font-size: 10px;
+  }
+  .slm-dots{ display:flex; gap: 5px; }
+  .slm-dots i{ width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.3); display:block; }
+  .slm-dots i:first-child{ background: #ff5f57; }
+  .slm-dots i:nth-child(2){ background: #febc2e; }
+  .slm-dots i:nth-child(3){ background: #28c840; }
+  .slm-url{ color: rgba(255,255,255,0.7); font-size: 10px; }
+  .slm-url b{ color: #fff; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.4); }
+
+  .slm-body{ padding: 14px 14px 16px; }
+  .slm-title{ font-size: 13px; font-weight: 700; color: #14121f; }
+  .slm-meta{ font-size: 10px; color: #8a8898; margin-top: 4px; padding-bottom: 10px; border-bottom: 1px solid #ececf2; }
+  .slm-instr{ font-size: 10px; color: var(--blue); margin: 10px 0; }
+  .slm-instr b{ font-weight: 700; }
+  .slm-grid{
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 14px;
+  }
+  .slm-cal{
+    font-size: 10px;
+  }
+  .slm-cal-head{
+    display:flex; justify-content: space-between; align-items: center;
+    font-weight: 600; color: #14121f;
+    margin-bottom: 6px;
+  }
+  .slm-cal-nav{ color: #b8b6c4; font-size: 9px; letter-spacing: 4px; }
+  .slm-cal-dow{
+    display: grid; grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    color: #b8b6c4; font-size: 8px; text-align: center;
+    margin-bottom: 4px;
+  }
+  .slm-cal-days{
+    display: grid; grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    text-align: center;
+    font-size: 9px;
+  }
+  .slm-cal-days span{
+    padding: 3px 0;
+    color: #14121f;
+    border-radius: 3px;
+  }
+  .slm-cal-days .dim{ color: #d4d2dc; }
+  .slm-cal-days .today{ background: var(--blue); color: #fff; font-weight: 700; }
+  .slm-cal-days .chosen{ position: relative; }
+  .slm-cal-days .chosen::after{ content:""; position:absolute; left: 50%; bottom: 1px; width: 3px; height: 3px; border-radius: 50%; background: var(--blue); transform: translateX(-50%); }
+
+  .slm-cols{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    min-width: 0;
+  }
+  .slm-col{ min-width: 0; }
+  .slm-col-h{
+    text-align: center;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #ececf2;
+    margin-bottom: 6px;
+  }
+  .slm-col-h span{ font-size: 9px; color: #8a8898; display: block; }
+  .slm-col-h b{ font-size: 11px; font-weight: 700; color: #14121f; }
+  .slm-col.active .slm-col-h b{ color: var(--blue); }
+  .slm-col-times{ display: flex; flex-direction: column; gap: 4px; }
+  .slm-col-times.empty{ color: #d4d2dc; font-size: 12px; text-align: center; }
+  .slm-col-times.empty span{ padding: 4px 0; }
+  .slm-col-times button{
+    background: #fff;
+    border: 1px solid var(--blue);
+    color: var(--blue);
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 4px 0;
+    border-radius: 4px;
+    cursor: default;
+  }
+  @media (max-width: 640px){
+    .slotto-mock{ font-size: 10px; }
+    .slm-grid{ grid-template-columns: 100px 1fr; gap: 10px; }
+    .slm-cols{ gap: 3px; }
+    .slm-col-times button{ font-size: 9px; padding: 3px 0; }
+  }
+
+  /* ============================================================
+     TASK VIDEO (пример видео-задания)
+     ============================================================ */
+  .taskvid-sec{
+    padding-block: var(--section-y);
+    background: var(--paper);
+  }
+  .taskvid-grid{
+    display: grid; gap: 32px;
+    grid-template-columns: 1fr;
+    margin-top: 40px;
+    align-items: center;
+  }
+  @media (min-width:980px){
+    .taskvid-grid{ grid-template-columns: 1.1fr 0.9fr; gap: 56px; }
+  }
+  .taskvid-frame{
+    position: relative;
+    width: 100%;
+    background: var(--ink);
+    border-radius: var(--radius);
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    box-shadow: 0 30px 60px -20px rgba(10,12,20,0.25);
+    border: 1px solid var(--line);
+  }
+  .taskvid-frame iframe{
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+  .taskvid-frame .vid-fallback{
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 16px;
+    color: #fff;
+    background: linear-gradient(135deg, #0a1b3d 0%, #0a0c14 100%);
+    text-decoration: none;
+    padding: 24px;
+    text-align: center;
+  }
+  .taskvid-frame .vid-fallback .play{
+    width: 72px; height: 72px;
+    background: var(--blue);
+    border-radius: 50%;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 14px 40px rgba(37,103,252,0.5);
+    transition: transform .2s ease;
+  }
+  .taskvid-frame .vid-fallback:hover .play{ transform: scale(1.08); }
+  .taskvid-frame .vid-fallback svg{ width: 30px; height: 30px; color: #fff; margin-left: 4px; }
+  .taskvid-frame .vid-fallback b{ font-size: 18px; font-weight: 700; }
+  .taskvid-frame .vid-fallback span{ font-size: 13px; color: rgba(255,255,255,0.65); }
+  .taskvid-backup{
+    margin-top: 10px;
+    font-size: 12px; color: var(--muted); text-align: center;
+  }
+  .taskvid-backup a{ color: var(--blue); text-decoration: underline; }
+  .taskvid-list{
+    margin: 24px 0 0; padding: 0; list-style: none;
+    display: grid; gap: 12px;
+  }
+  .taskvid-list li{
+    display:flex; gap: 14px; align-items: flex-start;
+    padding: 14px 16px;
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    font-size: 14px; line-height: 1.5; color: var(--ink);
+  }
+  .taskvid-list .n{
+    flex-shrink: 0;
+    width: 26px; height: 26px;
+    background: var(--blue); color: #fff;
+    border-radius: 50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 12px; font-weight: 700;
+  }
+  .taskvid-list small{ display:block; font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  /* ============================================================
+     FORM (анкета)
+     ============================================================ */
+  .form-sec{
+    padding-block: var(--section-y);
+    background: var(--ink);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .form-sec::before{
+    content:""; position:absolute;
+    inset: -20% -20% auto auto;
+    width: 60%; aspect-ratio: 1;
+    background: radial-gradient(circle, rgba(37,103,252,0.30), transparent 60%);
+    pointer-events: none;
+  }
+  .form-sec .sub{ color: rgba(255,255,255,0.65); }
+  .form-grid{
+    margin-top: 48px;
+    display: grid; gap: 40px;
+    grid-template-columns: 1fr;
+    align-items: start;
+    position: relative; z-index: 1;
+  }
+  @media (min-width: 980px){
+    .form-grid{ grid-template-columns: 0.85fr 1.15fr; gap: 64px; }
+  }
+  .form-intro-bullets{
+    margin: 32px 0 0; padding: 0; list-style: none;
+    display: grid; gap: 14px;
+  }
+  .form-intro-bullets li{
+    display:flex; gap: 14px; align-items: flex-start;
+    font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.5;
+  }
+  .form-intro-bullets b{ color: #fff; }
+  .form-intro-bullets .n{
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    background: var(--blue); color: #fff;
+    border-radius: 50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 13px; font-weight: 700;
+  }
+
+  .formbox{
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius);
+    padding: 28px;
+  }
+  @media (min-width:760px){ .formbox{ padding: 36px; } }
+
+  .field{
+    margin-bottom: 22px;
+  }
+  .field:last-child{ margin-bottom: 0; }
+  .field label{
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 8px;
+  }
+  .field .hint{
+    display:block;
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+  .field input[type="text"],
+  .field input[type="tel"],
+  .field input[type="email"],
+  .field input[type="number"]{
+    width: 100%;
+    padding: 14px 16px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.18);
+    color: #fff;
+    font-size: 16px;
+    font-family: inherit;
+    transition: border-color .2s ease;
+    border-radius: 0;
+  }
+  .field input::placeholder{ color: rgba(255,255,255,0.32); }
+  .field input:focus{ outline: none; border-color: var(--blue-2); }
+
+  /* Slider */
+  .slider-wrap{
+    margin-top: 4px;
+  }
+  .slider-head{
+    display:flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 14px;
+  }
+  .slider-val{
+    font-size: 22px; font-weight: 700; color: var(--blue-2);
+    font-variant-numeric: tabular-nums;
+  }
+  .slider-val .u{ font-size: 13px; color: rgba(255,255,255,0.5); font-weight: 500; margin-left: 4px; }
+  input[type="range"]{
+    width: 100%;
+    -webkit-appearance: none; appearance: none;
+    background: transparent;
+    height: 28px;
+  }
+  input[type="range"]::-webkit-slider-runnable-track{
+    height: 4px; background: rgba(255,255,255,0.10);
+    border-radius: 2px;
+  }
+  input[type="range"]::-moz-range-track{
+    height: 4px; background: rgba(255,255,255,0.10);
+    border-radius: 2px;
+  }
+  input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance: none; appearance: none;
+    width: 22px; height: 22px;
+    background: #fff; border: 4px solid var(--blue);
+    border-radius: 50%;
+    margin-top: -9px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(37,103,252,0.5);
+  }
+  input[type="range"]::-moz-range-thumb{
+    width: 22px; height: 22px;
+    background: #fff; border: 4px solid var(--blue);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(37,103,252,0.5);
+  }
+  .slider-scale{
+    display:flex; justify-content: space-between;
+    font-size: 11px; color: rgba(255,255,255,0.35);
+    margin-top: 6px;
+  }
+
+  /* Radio chips */
+  .radio-row{
+    display:flex; flex-wrap: wrap; gap: 8px;
+  }
+  .radio-chip{
+    position: relative;
+    cursor: pointer;
+  }
+  .radio-chip input{
+    position: absolute; opacity: 0; pointer-events: none;
+  }
+  .radio-chip span{
+    display:inline-flex; align-items: center;
+    padding: 11px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.18);
+    font-size: 14px; font-weight: 500;
+    color: rgba(255,255,255,0.85);
+    transition: all .15s ease;
+  }
+  .radio-chip:hover span{ border-color: rgba(255,255,255,0.4); }
+  .radio-chip input:checked + span{
+    background: var(--blue); border-color: var(--blue); color: #fff; font-weight: 700;
+  }
+
+  /* Video drop */
+  .video-drop{
+    position: relative;
+    display: block;
+    cursor: pointer;
+    padding: 28px 24px;
+    border: 2px dashed rgba(255,255,255,0.18);
+    border-radius: var(--radius);
+    transition: all .2s ease;
+    text-align: left;
+  }
+  .video-drop:hover{ border-color: var(--blue-2); background: rgba(81,153,255,0.06); }
+  .video-drop input[type="file"]{
+    position: absolute; opacity: 0; width:0; height:0;
+  }
+  .vd-row{ display:flex; gap: 16px; align-items: center; }
+  .vd-ico{
+    flex-shrink: 0;
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: var(--blue);
+    color: #fff;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .vd-ico svg{ width: 24px; height: 24px; }
+  .vd-text b{ display:block; font-size: 15px; font-weight: 700; color: #fff; }
+  .vd-text span{ display:block; font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 2px; }
+  .vd-status{
+    margin-top: 14px;
+    font-size: 13px; color: var(--blue-2);
+    display:none;
+  }
+  .vd-status.shown{ display: block; }
+
+  /* Score 0-10 */
+  .score-row{
+    display: grid;
+    grid-template-columns: repeat(11, minmax(0, 1fr));
+    gap: 4px;
+  }
+  .score-cell{
+    position: relative;
+    cursor: pointer;
+    aspect-ratio: 1;
+  }
+  .score-cell input{ position:absolute; opacity:0; pointer-events:none; }
+  .score-cell span{
+    display:flex; align-items: center; justify-content: center;
+    width: 100%; height: 100%;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 8px;
+    font-size: 13px; font-weight: 600;
+    color: rgba(255,255,255,0.7);
+    transition: all .15s ease;
+  }
+  .score-cell:hover span{ border-color: rgba(255,255,255,0.4); }
+  .score-cell input:checked + span{
+    background: var(--blue); border-color: var(--blue); color: #fff;
+  }
+
+  .submit-row{
+    margin-top: 32px;
+  }
+  .submit-btn{
+    width: 100%;
+    padding: 18px 24px;
+    background: var(--blue);
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    font-size: 16px; font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: transform .15s ease, box-shadow .2s ease;
+    box-shadow: 0 14px 36px -10px rgba(37,103,252,0.7);
+  }
+  .submit-btn:hover{ transform: translateY(-1px); box-shadow: 0 18px 40px -8px rgba(37,103,252,0.85); }
+  .form-fine{
+    margin-top: 16px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.5;
+    text-align: center;
+  }
+  .form-fine a{ color: var(--blue-2); text-decoration: none; border-bottom: 1px dashed currentColor; }
+
+  /* Success */
+  .form-success{
+    display: none;
+    padding: 32px;
+    background: rgba(37,103,252,0.10);
+    border: 1px solid rgba(37,103,252,0.4);
+    border-radius: var(--radius);
+    text-align: center;
+  }
+  .form-success.shown{ display: block; }
+  .form-success svg{ width: 56px; height: 56px; color: var(--blue-2); margin-bottom: 16px; }
+  .form-success h3{ font-size: 22px; margin: 0; color: #fff; }
+  .form-success p{ font-size: 14px; color: rgba(255,255,255,0.75); margin: 14px 0 0; line-height: 1.55; }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  footer{
+    background: var(--ink);
+    color: rgba(255,255,255,0.5);
+    padding: 32px 0 40px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .foot-inner{
+    display:flex; flex-direction: column; gap: 20px;
+    justify-content: space-between; align-items: flex-start;
+  }
+  @media (min-width: 760px){
+    .foot-inner{ flex-direction: row; align-items: center; }
+  }
+  .foot-inner img{ height: 22px; opacity: 0.8; }
+  .foot-meta{ font-size: 12px; }
+  .foot-link{
+    font-size: 13px; color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    display:inline-flex; align-items:center; gap: 6px;
+  }
+  .foot-link:hover{ color: #fff; }
+
+  /* ============================================================
+     TWEAKS PANEL
+     ============================================================ */
+  #tweaks-panel{
+    position: fixed; bottom: 20px; right: 20px;
+    z-index: 1000;
+    background: #fff; color: #14101F;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 16px;
+    padding: 18px;
+    width: 280px;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.3);
+    font-size: 13px;
+    display: none;
+  }
+  #tweaks-panel.open{ display: block; }
+  #tweaks-panel h4{
+    margin: 0 0 14px;
+    font-size: 13px; font-weight: 700;
+    display:flex; justify-content: space-between; align-items: center;
+  }
+  #tweaks-panel h4 button{
+    background:none; border:none; cursor:pointer;
+    font-size: 18px; color: var(--muted);
+    padding: 0; width: 24px; height: 24px;
+  }
+  .tw-row{ margin-bottom: 14px; }
+  .tw-row:last-child{ margin-bottom: 0; }
+  .tw-row label{ display:block; font-size: 11px; font-weight: 600; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .tw-swatches{ display:flex; gap: 8px; flex-wrap: wrap; }
+  .tw-sw{
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .tw-sw:hover{ transform: scale(1.05); }
+  .tw-sw.active{ border-color: var(--ink); }
+  .tw-segmented{
+    display:flex; gap: 4px;
+    background: var(--paper-2);
+    padding: 3px;
+    border-radius: 10px;
+  }
+  .tw-segmented button{
+    flex: 1;
+    padding: 8px 10px;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    font-size: 12px; font-weight: 600;
+    cursor: pointer;
+    color: var(--muted);
+    font-family: inherit;
+  }
+  .tw-segmented button.active{ background: #fff; color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+</style>
+</head>
+<body>
+
+<!-- ====================== HEADER ====================== -->
+<header class="topbar" data-screen-label="00 Header">
+  <div class="wrap topbar-inner">
+    <a href="https://recruto.ru" target="_blank" rel="noopener" aria-label="Рекруто">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAioAAACKCAQAAAAuuqn/AAAe7klEQVR42u2dd2CURdrAf5uy6QQElCpSpVgPVFApSlGKICdNRUSxF+7UQxQRRBAU9RTkU5QiIOqBSBEUBfRoFkCOJhAg1BCalJBCkk15vz8CkrK7eXfmbZvMz3/isjPzzOzu887M01xaEhXQMBcNDx7OkkIKx0nmMCc4TjIpZJJj8tgKhcJSXFoasbaMfJbDJJHIZrZxlCS7F0KhUBiDS0sh3mYZMtjJr6znNxLtXg6FQiGLE5TKBbaxiaX8l+N2C6JQKMRxklIByCCRJXzKXrsFUSgUYjhNqRRwjFnMIMH0C2SFQmE4zlQqAEeYwjR1gatQBBvOVSoAW3mbeWTZLYZCodBPiN0C+OUaPuNDGtsthkKh0I+zlQrAQyzgHruFUCgUenG+UoHGTGcooXaLoVAo9BAMSgUq8AYTibFbDIVCUTrBoVQglKeYZFNAgUKhCIBgUSoAA5mgdisKhdMJJqUCDzMGl91CKBQKfwSXUoHBPGe3CAqFwh/BplRCGEFnu4VQKBS+CTalAvG8TR27hVAoFL4IPqUCzRhOuN1CKBQK7wSjUoE+dLFbBIVC4Z3gVCoV+AeX2C2EQqHwRnAqFWhLN7tFUCgU3nB26gN//EIPTgbYJpRYonATSzyRRBCGBw+ZnCGTbDLIIs/uaQUhLtzEEkUM8cQRQQjZeEjjLFlkkE6u3QKWe1xEEkMEEcQRTzju859RJilk4eEc54z85ssolXwSOUqY3/dohBFNRWJwE21wUGBf5up6XxyVaEgD6lKHy6lFFcJxwXk3Og3QyOIESRxgPwfYzX5SyQxQmmiihWbh4hwZEqsQb+qltYs8Un2ohSgq0YTG1KcRdalJdJFV1dA4QzKJJLKP7SSSRrZhsmucId/QmYZR0cR1NAcXHtJ8rkMM0dSjIXW4gsupTVUq4Crxzc/gDMkc4BAH2cs+TvvpUa9YEkolm6eZg9vvezRCcRNDBWrQmJtoTMNSWuhnDgPw+H1HberRiltoRM0AHPxPc4g/WMNGEjmru9VzDBCahZvpvC/8nKjHJ1QxMe1mGMm8wPYSrzegOV25jno61/UM+9jAcrYWqZgwnL5C+xgXHoawytCZ9uXFoLsMCGcjz3OqxOuXUY/mtKYJNagcQH8ZHGUfv7GWfewT/1aFiTYENM6SrvvdG1kMVKcj3elgyJHrThqz1ce/VeYG2tOOFgL9XsIlXEd/0ljJL6xgs64v/hVcJziPOsKhB+GMob1gW71cRlyxV27h73TlyoB6qURzmvMEu1nOMlaSCsAmRgvLNdBQpRLBI/zNwP6swlPsEV2JFrTjFloJPbpjaEADOgEJrOZn1rJPSCotRRMlS7tXQ+C/CK2jtlh41MI877X/K7XntZ8k5lWU/dpsrZ8WW+qs3hQe4S0tVGgd0QZpHoNm6ZskrUWhEVton2rJkj2mat9rj2pxGppbWybcyyGtvuCqefvvVu2U6StpBj9rl/01h0baEG2FgfPI1TZr72kdA19NO5QKGlpFbaiWLj3t1SX6rau9qe3T8g1b2ALStDXaY1q03xm9Jdz7eEGlcpW22+B5euOiUonRRmhJBvWapf2i9dfQugn3kKe9bKBSmWDBSprBBaXSWHtX22P4917TNO1PbZHWVQsPZDXtOkWmMJ7BAdxYeKdpkU14FUawiqHUNTySOZZb+YCf+DuRFq+TbyJ4mYYWjnc1XzGSWoZJ34opzAV+FewhhK6GXa3WooNBPVlNLh4u503W8DwNTIngr0J35vANHfRfldh3NaUxnZGS5sY4Wp3/K5oB/Mgoapsmr5ub+A8zaWbhGvnjfnpZNFIe0Jmv6WzwtyWS3kynhnD7a7jNIEm6B3hD5ByieIbvGEoVU0eJ4U4WM42r9b3d3vvuScyRau8+f7nWjI+ZyTWmyxtOH5bxDypYsjr+aMQQw6xo/skhlY7MMmlXVJU6iFoZ4ugsZWi4QBRdgjYDcgtet+gxF8kAlvJPPZ7s9iqVPEaRLNVDdVzcx3z6WyZzDd5nms1PtlCGWVa4RKM3H5v6JBTftHc0ZBVu4VYTZ2cu1qYsq8l7fFa6RdVuy/wenQ5svmjKVD6mkcVS92Iut1s8ZmH6WqhEqzOCujbO1R9XGPAphNI5SH3K7aEL8xjo/y12KxX4VKoCYRMetiUd9jXM4T4bxgVoxCgLt+tRRNk0Tz30kt5DXaEi3gOkDv/HG/5MFvYrlQR+l2htX8baKkzhcRvGD2EkDWybtdO4VdplrY2qgBkw0bzMB75tb/YrlVxW2y2CINF8wOOWj/qQqtdYCBd9pWKfYm3bbwY3Lh7hE18hAPYrFY3ddosgTDhv84ClIzbiJSLsnraj6Ex9idbX08buCQQtvZni3RZkv1KB00GccCCW9y10nIpiuMTRRzM4rtcZVJe6E+lvkWG+bNKTid5uNJ2gVNJLhMQHE5cwgSYWjdWbPsJtNxkc1esc7hcuMVdfVWaQ5H5eKWk0cIJSyQ/yND5NGUOMBYqxIcOFjz4neIktjvi0jecqYc/aboaFHZRfXuCR4i854WsWErT+jBf4OwPIMflw4ZaK9ZnKMkebhmVwM0DICuemn6p3KU04I7mp6EtOUCrRZeDr/i/aCrub66O3hMPbWv4NZfj24GauFWjViavsFrxMUJ2xVCr8ghOUyiWOkEKOerQ3db9Vh9eFTaenedFLdrCyRHW6B9zGRT9b3CbLIrfzZOH/NSIgSw6XpQH8ADs4QCJHOEsOocRTg3rU4WoHq7YwxlJPuPVY4fQCwUIId/B/ASrOq4I44sd5/IslF7Mw2q9U3LS2bKw0vmIpmzlFaiEzdgixVOJq2tPf5BByUR6gt3Db+Xxot/gW0Jzb+SqgFl1MTJNR/qjEyItOmfYrlfp/5UQxFw9zeI+dXiKN8kkllYN8z2SeYaDjNsVNGSp89NnHqwHXBdCPRiYnOUs2+YQQQzxVbSpIG0E35gfg71SFOx28MzULjTT+JI0cCqpcVKaSYRqgMz1ZUPCn/UrlQUs8RA8wks9L+dLlsovBLGeM3mQ0lhDKi8KJFnJ5jR0myXWK9fzENvZzjHOAiwpUpxHX0JGrbMg404Fr+Z/ud7csbrHQyZlS3xEjfCGeQXYJa1SeQSVY8jnKCtaxg/2cxAO4qExNGnMdHWkoWF6mMFE8yuIC5xC7lUoDCXcu/WzhMdbreqfGNyTwoek56vXTl37CbWdIJpbwxXEWMp3fixnRT3GKP5jPW7TjSW4XdkkTowYd2aTTAhdGdyGL42YGl/IOjeHcITiD0awsppA0IvjIgDvHXcziS/YXe/UYx9jI51TmTh6htbSh4Wa68E2B3PYkvi74L0ybbkFy4B1aswDlqqWtskCuC/hLfF1fIrn1Fu3yIn19apC832ptdaxhH22zhWuoaZq2Tqum8/Ntpp0QGuFRHX2Lr7K3vPV3aWclVyVT+0CrW6rUkdpg7YD0JzBLC7Mz8XUBT3Kv6WP8yaNeimH55zCPsceeJSmCi+HCz6lMXuGQ4RLl8TYDdDn8z6XXhTO2RVxPS13vC6ELVQX63893Ot4lflgpubOLoL/kQfIIT/JsiT1KSbKYSB/WSo0F7QpSW9qpVB5mrAXZ6V/nZ4FWu3iFc9YvSTHulYiB/oAlhsuTzTBe0W26TeRhZpizMF4Jp6eun/QlgskjvuaIqfKXPLpdrVNN+uIgAwP4BNZzL99LjVebTmCfUonlNSZZYGdZzlTBlvOYb+2SlKAerwufc1fzluHyaPybd8gJoEUK/7B0FbvrSnx5M80F+k5jock+0yVpI2X2TuEJlgfU4jBPSO5WOlDZHqVSgTtYwkgLnPNzeF84WaXGBKnC6bKE8ZpwppAzDOW04RLNZ0TA8U2pXisxm0VFXZfa9wmZJ37iD8vmUUAULSVik/J4VWDfcZDnOCYh8w1cIadUtFLKo5ekIk14kJkspa3EuPpZzRqJ1ltYZImUWV5N3f2FHd40RvGb4VIeZbhQNPkBXpXKQhwYfUq9g2gslH8ll3nSpe8CpZ6g2buARcwSavc7b0tkDahES1wyJmUXValailU+lDAiiaMKVajPdVxpaeb7BQEUkC9JDnMtSTZ4E4OKHXNyiOZfwvdNC5higpRvkyAszxLLCp81pBtf+H3HgBIF5/WwlR8tmkHhuVwu3PYMH5Aq2PZTekjkw2uBW0apuHmRgaVsJUMJxU00FYU+SjnO8qvkKXgLuy1Qgp0KrrcMYi8jTLhi3sF/JFqPp7tFMdJu7mGunyftZdwl1O9ijloi/0VCSq+v44clQuaJAs4wmxuFH2mNqSC3U6nr2IowABt0mNL8c4TfLK8pJMc5Rptyh/G11I9qM0vpYdEKtOJaNvr8105C6TiTdRmTjSVO6Dq5gBTmBnShXpxveVbYq7wBl9vtUWsmlRlMvsRVlwZBVwzjCz4zodcMlkq1z2GhZUqlOvf4VCph9BB6Aq9hg0XSXyRWIqH3AUkbzhF+EVYqVahRlpXK9VxvtwgWs5XRpuSf28pByR42cUSiFHtg3MH7nPD6L82F/D6yWGC5MRku0VO12Ae/kCI5+ioGCsfk1Sp/kZpll0xeMsGHFuB3jkv2kCR8zRs4zbjTx7/0oKZAfztMcCMsnbrCvrQeNkmP/rOEO0V9pVTKDu9JHlJ8kyBdROUc+yxbhwi6eo26rU03of4+s8W3+lJhh/9z7JUePYkk4bbVlFIpK/yXt03qOZvD0n1kSV+aB0I7rzcCtxdEpgTIIVs8q12+qv/pIIVk6fFlSvwppVJGSOYl6XO0L85w0oBezI2bKcqldCzxWgV6CLl6fmPSkdI/LolAwtOGZCQW36lUUkqlbPC+znwxIqRLuRBe4Iyl9RHv5rJirzQV8uLOkPLPkUE8dVmmsNtbYUpPR+WLKKVUygZNTUzj6Ak4HMMbmZYWt23OzcVe6SxkTVljwKWnCC6Jz9Mj5aNyAfEkpG6lVMoGDzLQtL7zDFEHORabZR8s8rOsKlg1aYZtCTDEf5nGrLO4YgpRSqVsEMIo0zLrhhpS0Sjc4mqA7bmm0P91FipxspWVlspcGHFFHmpI7gHx41euUiplheq8Y1IyCbchcTtRFqfZiC2UiilMcB8314cTnfkEngHgIhGGpJIXz3WUrZRK2aETz5nSb5whwaCVLa+Y3Z1Lz//VWig47zA/2OBJW4AmcacRR0UDJLhUuGV6MCgVK60Gwc2zEiHrvqloSIm16lYvBg3/Miz3FFKLayxPy3QRTSJ7S0WhDLzFEc85d9LpSuUMs9hptxBBQzVGm1BxJ4Ja0n1ESsSzewT3C27uJxSoTWehUb+xMLlUSf4U3iXFG/B5hUtE559wtlJZzQAeNK0cVlmkDUNNuBBtLH10iRGuBa2xRTg3SEtaAj2Fkh1t4gfJOctxTFilRRoQW19f4vhz2LlRyjv5mC85AcL+gfn8QqpF5dJyaeKQ3DJPs0YyJ3pJbqCapOt3bSEXeQAXW1hOC6GUBZXoxq9CCaJyWSjh/mUEB0kTvHgP4wbp0WVKwSU6U6nsYBoL/ooWOUS+kOXAxWS+s8jmkM8I/mnV8vglntfZZkD0R2Gupb5kj80lnnwpLGSzYLGKlvSnsUC7ZOZJzVeesxwXXrO/UUMyLKK18MM4lyNOUyrZrGM23xeJPEjAI/ScctGaLy275jWvDHqg3MALvCiRvLgkkXRmrcRKRtJTuK1GKh6+FVQqLWhQwmFfDz+QKCyxMWSwS9jzqD4dBNNeF9BEYq+TzBHn3KmksZkP6URHphQLZlovHCrXgyaWyW+1wdQfzwhmYvVNd6pJtP6bcH1hOMcOYJ5g6oRYagk8c7OYIzFbY0iXyDYXQS+psI2u1BFuu9sJSuUce1nJWB6iA0+z2ovTT7JwLo5qDLJ7erYQzhsSmdi90VTQzR0ghCESN1vp/A9I0FVq1Sh+ky4AagRbJLxq20k8VqozQOLzSiDDruNPHkc5zAES2cZO9pcSB7usRHiYXh5mrgk1cIxlFYuhkM0mn2y6+cxepo8mjGGgoUe/51gsaNy/R8ike4HDHADgS+4xwVzunWmGhFDKsocE4evtOAazQiha2cUzEgEfGj+TK6NUNA5xQsc2K488cskjgwzSOcURjnCKk5zgqE5dvIxXBY8X8YynpyH5JSDepHJSa3i3xGtL+F7ogvEi97GKaQZKWY3x9BUIr2vAKCm38ZXn/TVWsZHbDJyPb3YZbj0T4xDrhJUKtOUFRgq068AzUjJvRsrg6mEci3RYVzQ0NPLJJZdcPAKbup38LlytrTVv8rQBT55HeYQXTdmEuwkpsac4yDg+8poUUS+hDON3thgoZzdGMSTANlV5X+peK4+fzv/lYaZFSuULQ5JSyZPLWvpLxF0NYW/A17VXM1FqP7iGg3JKBU5L1V3VTyrfSZSAHEQKw6RyTMQzlBdwM5kH+N3w2bm8uqvNpgMPSPVbj+EMMNQq9TznGB2AXelSPqCr1Ij72fbX34tItKBkynEbavz44lf2SqjkKCaSx+cBtGjMVKn9cT4/kCVboN2qG5l8vpUoOO7iX0ySsF7czBxexg00ZnqRgHpz5zxGOq9rLx42VKYQXuXfuiOBrmQ6fSRHXFkoP24Knxo6G+/8ZGHe/9JIYLVU+3gm80/dLnTtmcuNUuNtKUgVYb/1Rx8JLJdq/xhzhTbPVzCchYUMolczQ/KuQz+7GSXdx8tSxTNL4uJZ5tKu1PfFcD8LJHcpoPFtkQiYxaanIvCw0JDkmUYxX1KaWN5jso4HYXVeYq50Rp4VBY+AYFEqGdKFEloznw8DsiLVYzDzGF0s5vN6ZlumVmYzV7KHmoyVcLj2zm0s4BNu9xn5exm9mMUsA3yEthQz7Saw2OC5FGejDYXY/fGTAbd4A1jI67TwaVKpxyC+YpxE8bICjvBlwR9O86j1zY+soLtUDxV5ku6sZjkrSskVHs9ttKWjj7v35szgAfZYMOc8RtFCOBSvgI4MZpzBclXkUXqwjV/ZRiJHSCWXCCpSiyY0oxVXGZKBBWYWs9vlMI/+hqQg8o7GIoMshUaRyyQ6SifJqsurDGAjv7OdvRwnHY0oKlOHZlzNLVxpiOvm9xfMAsGjVLKYShvp9DM1uZe7OcIuNrKN/aTgIReNUEKJoCK1aURzmlHD7x34TUzlIUvKY+3gXSZJxh0PZS1rDJfsUtrTnnTSSCObfEKJogJxQgEV3kksdvgB+I3VXspvGMUBvjGtb1GWs4S/G9BPHerQkzRSSceDRhgxVCDOsITpJ5l4wYYZPEoFvmUp9xrQTxT1qU8XcsjDQxqZ5BNBBDGEE0qYrp9wGz5ikAFFtkpnFh25W6qHeMZzp0k+NrHEmpZ+6Qsvu8EU5tPetEP7jw7M3ZPH23SSSO5YGBcVTHMg/OSi+0Kw3KkA5DPBUBN2OJFUoCYNaEQdqhFHZADpmTvxoVQ8jF7SGScdc3wTQ5DJj24HiT4q7iw1LR9bGgvsnrRX1vOR3SKUyo7CMgaTUoF1TLBbhELcxYcSxSn1s56JkkUyXDxBG9KsWRZDyGemj13DQZablDl261+Ods4in3f5n91C+CWX1wrv2oNLqcBE04qQi9CTj6hkwTgfSdskKvMu11lazksOf0/n+SYZlmfamj7SH8cZbtLx1RhmFN3jBZtSOccLBtS0N47eTDQkd7l/0hgm4fxXQAvaBM2nncrrfqwwG4TTS/pjny2F2PWyjEl2i+CTjcW9rIPla3aRnQwhw24hCtGfcVIxOvrYyHjpPvRdQTuByX73ozl8bkJKrC8cZkwuSh7jWGS3EF45yrDiJeyDT6nAAkY4aiP/BG8RZnrmt8kOc8syj7WMLeUd3xmeDP2MA43JRclgiE11nf2RzWssK/5iMCoVmMQ7tpV58sYzvEisyYkrzzI6qK5aRUnmmVLvD7KYafCoywsFLjqVPTzuqKM/5DGWT0q+HJxKxcNIJtotRBHekIwo1sNqL3lXyhqpPKUrXcPi4ltuKTTmOPaStjAbePB8yipnMJ4x3l4OTqUC2bzsqJ/YTnabPobGRFOuKJ1DNsN0HkMOGOpTsk4yGtg6fuYBC75p+hjLSO+782BVKpDJMF52yPNlPw/xgwXXoGcY4+jrRDlyGBWAm9eXBkYTf+2QtEx6WEt/B3iteBjOa77cKYNXqYCH8QySrG9iBAkMYB0xlthWfpAqveBkshnB+ADupf4wLOnjXptrEQbKBvrZ7K31J48yzreHdjArFcjnC3ryi60yrKY3a7FqJTXeZLOt8zWH0zzLmwHZ9DKYY1Bto9VBV1h3D/fxvmQqEHE20otZ/tR/cCsVgPV05z1p1zAxPEyhn2mxKN45wTDLv05HTLZsJfAAUwJutZZ1BoydxiJHOSjoI4XneJxdlo97jk/oWdoNVPArFTjF89zPfy0fdw9P8gRHLR93qTcznqlMYLiJvS+gt1Be2GMsNsCxYLMN3xxjmE0PJltaGXMjg3i8lFxElA2lAvA9fXnWwm2sxnR6Md2yoqpFecdir4oUxjHEFC+ZIwzhQeG93lIOSo6fw9dC1XGcwS6eoj8rLBnrBKPp5SNyvBhlRanAn0yiC8MMLk3unRV04Wm22jbXZF4h28LxYoF36GuwKsvnS7rwjoSy2i79g0rW9zNxLBrz6ccgk7+L6UymEyP0+siUHaUCBdVyWjGMLaZVmMvkR/rRg+9tNmZ/x1QLRys4ZCylC5MN2q9ks5K7eUiyLlEe84TrbBfwNccNmY+dnGI6bXiSDSY8aPJJ5hPaMDiQTypM6lTqJFf5CyQxjmncQU9uoKaBZt48DrOKufzgw+Zg7Vrk8QHtJOrXiXGYp5jPC7QkXqKXU2xkBgsNuQ34iU0SJcbOMs/wNbLnN3GWycymM31oSS2D+kxlDwtZFPj+NEwicD9Cd0URqznBZ3xGMzrTiuupKZk4OJsktrCKb/1mpRVP+BctpPp28RYzLY871ljOCu6iL7cKlIDPZA+rWWhgaGQOs2kjnLZ5FRsMXyHxdI2y6a3T+YqvaEZXbuU6akgks05hN+tZwY9iDoZhLCdSSLu68Nhg+QiE7WwHrqchf+MqalMrwCIEZ0niEH+wkQQdZ9Zdgq7eoSQIPt3+w7XcqLNtPtCUS4XGKY7GN3zDjbSkLU1pqOvLm8ReNrOWTYanC1/CduECb7NMMCZvoZLg78mYg9h2tvMuLWjCjTTmcuoEkIf6OIc4wDq2s03mbtKlXUqo4CLkc9YhbvKlU5HK1KQu1ajN5dSgEpWIJbRQyVGNPM5xhj85QRL7OcEBkjip+8weK7hXCSFV2OE8ioo6PzsNeIf+guM8z3teX4+jBo1pQAMaUJtqxP21nvlopHGCZBLZz372cNi024vXhAqRwyY6mhD0UIEYwd/TaYPvREKpTFXqU4ea1KUWVbmECoWy6uQDGZzmDMkcIIkk9pPMKflsRWGm13xzBimksJfVQDjRRBJOOOFEEoEbN7l48JBOHjlk4yFT4ONNt6GyXWZA9xLGPwDS2MUuwE0sUUTgJoZowsgmi3N4yCaTDJPtVC5qC7acbYrLZKpjTNR5nOAE24EQoonCjRs3kUQQCXjI4RwePOSQSaaRpo1gKtFhDDmcdXS+T/Mw77P2GPrzdAf0Be/OPUKjHGKZIw0NZpBv7SOvbJmUFcFPKG8FUImyNqMFLVE/WFJjslyilIrCWdzGs8xiqK7iJ5fxsWBR8XQWWuo+WK5QSkXhJNw8RijxvMkcepdSkrMpM+gsOI4ZhWAV5yl/dyoKJ9OWDuf/ak9LnmIuq0j0csdSh7sZLFy6PpM55SLfr00opaJwDmE8WKg4WwztuJlT/I8dJJBECh6iqUhDrqIN9SRKi29xdI2foEcpFYVzaEvXYq+4qU5XupJPFh7yCSMCt6QfcQ7THGP2LZMopaJwCmEM9Bk0EkK0YSXbNvO13VMt26iLWoVTaMVdlowzgTN2T7Vso5SKwhm4eVgq9lkvK0yITFYUQSkVhTNoQV8LRknjDeWfYjZKqSicgItnLEmkMZO1dk+17KOUisIJ3EoPC0bZzgSDynoo/KCUisJ+QnjaMNuOb7IYQ6LdUy0PKKWisJ+b6WTBKNPUFa01KKWisJ/HC/nRmsWvvKaOPtaglIrCbtoKhwXq5yBPBVER9iBHKRWFvbh4WFeaAxlO8mSZrEDtUJRSUdhLa9P3Ken8k6V2T7M8oZSKwk7CeYCqpo5wmqf53O5pli+UUlHYSRv6mNr/YR5nlt2TLG8opaKwk1BTy6FtoJ8yI1uPUioKO1lJZ1aZ0nM+U7mHn+2eYHlEKRWFnXj4mR4M4bChvWps5l6eIMnu6ZVPlFJR2M1Z3qEd75FoUB2eRF6nPXNNKGmq0IXK/FZ+EH+AmF8Gfi/PM5WudKa5RInzPDbwLXNURR97UUql/BAh3FI8xXQg7GAHU2hJW1pzDXEBtdVI5L/8yGqOWSKrwg+u8lL5UcFd3EBOwEcMF5Es5jdLJa1ObW6gBY2oS3W/7zzHARLZwa/sNOz4pJBEKZXyg+ghxoVmy881klhqUYNqXEENqlCBSMLIwkMmpzjOUQ5zjMOc4py6P3ES/w+43zJ5U0CGewAAAABJRU5ErkJggg==" alt="Рекруто" />
+    </a>
+    <a class="hh-link" href="https://spb.hh.ru/vacancy/132857288" target="_blank" rel="noopener">
+      <span>Вакансия на hh.ru</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- ====================== HERO ====================== -->
+<section class="hero" data-screen-label="01 Hero">
+  <div class="wrap hero-inner">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow reveal"><span class="dot"></span>Удалённо · полностью</div>
+
+        <h1 class="h1 reveal" style="--rd:80ms;" id="hero-h1">
+          <span class="sm">Младший рекрутер · интервьюер</span>
+          Работайте,<br/>
+          <span class="accent">когда и где</span><br/>
+          хочется.
+        </h1>
+
+        <p class="hero-sub reveal" style="--rd:180ms;">
+          Вы сами определяете расписание. Интервьюируете кандидатов по&nbsp;готовым шаблонам — в&nbsp;удобное вам время, через нашу автоматизированную платформу.
+        </p>
+
+        <div class="hero-meta reveal" style="--rd:260ms;">
+          <span class="chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            Расписание — ваше
+          </span>
+          <span class="chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18"/><path d="M12 3a14 14 0 0 0 0 18"/></svg>
+            Откуда угодно
+          </span>
+          <span class="chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c2 0 3.85.66 5.34 1.77"/><path d="M21 5l-9 9-3-3"/></svg>
+            Сдельная оплата
+          </span>
+        </div>
+
+        <div class="hero-actions reveal" style="--rd:340ms;">
+          <a class="btn btn-primary" href="#form">
+            Откликнуться
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#work">Что за работа</a>
+        </div>
+
+        <p class="hero-fast reveal" style="--rd:420ms;">
+          <b>До 80 000 ₽</b> · технику пришлём · обучение бесплатно
+        </p>
+      </div>
+
+      <!-- Schedule preview -->
+      <div class="reveal" style="--rd:300ms;">
+        <div class="schedule-card" id="schedule-card">
+          <div class="sch-head">
+            <div class="sch-title">Ваша неделя</div>
+            <div class="sch-meta">сами выбираете часы</div>
+          </div>
+          <div class="sch-grid" id="sch-grid">
+            <!-- filled by JS -->
+          </div>
+          <div class="sch-footer">
+            <span class="legend on"><i></i>Работаете</span>
+            <span class="legend maybe"><i></i>Возможно</span>
+            <span class="legend off"><i></i>Отдых</span>
+          </div>
+          <div class="sch-caption">
+            Слоты для интервью вы расставляете сами. Хотите <b>5&nbsp;утра в&nbsp;среду</b> или <b>11&nbsp;вечера в&nbsp;субботу</b> — пожалуйста.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== FLEX (4 преимущества) ====================== -->
+<section class="flex-sec" data-screen-label="02 Преимущества">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>Условия</div>
+      <h2 class="h2">Свободы<br/>больше, чем кажется.</h2>
+      <p class="sub">Без офиса, без жёсткого расписания, без контроля каждые 15 минут.</p>
+    </div>
+
+    <div class="flex-grid">
+      <div class="flex-card reveal" style="--rd:0ms;">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4"/><path d="M8 3v4"/><path d="M3 11h18"/></svg>
+        </div>
+        <div class="flex-card-h">Абсолютно гибкий график</div>
+        <p class="flex-card-p">Хоть утром, хоть ночью, хоть только по выходным. <b>Расписание определяете вы сами.</b></p>
+      </div>
+      <div class="flex-card reveal" style="--rd:100ms;">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/><path d="M3 12h18"/></svg>
+        </div>
+        <div class="flex-card-h">Откуда угодно</div>
+        <p class="flex-card-p">Дом, дача, кафе, другая страна — лишь бы был интернет и спокойное место для разговора. <b>Без привязки к городу.</b></p>
+      </div>
+      <div class="flex-card reveal" style="--rd:200ms;">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="16" height="12" rx="2"/><path d="M22 9l-4 3 4 3z"/></svg>
+        </div>
+        <div class="flex-card-h">Технику пришлём</div>
+        <p class="flex-card-p">Веб-камера и наушники — <b>от нас, бесплатно</b>. Покупать ничего не нужно, со старта работаете в нормальном качестве.</p>
+      </div>
+      <div class="flex-card reveal" style="--rd:300ms;">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/></svg>
+        </div>
+        <div class="flex-card-h">Сдельная оплата</div>
+        <p class="flex-card-p">Платим за результат, не за «присутствие». Чем больше интервью — тем выше доход. <b>До ~80 000 ₽ в месяц</b> при полной загрузке.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== STATS (о компании) ====================== -->
+<section class="stats-sec" data-screen-label="03 О компании">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>О Рекруто</div>
+      <h2 class="h2">Подбор персонала —<br/><span class="accent">наше ремесло.</span></h2>
+      <p class="sub">Рекруто — стартап на&nbsp;стыке HR и&nbsp;IT. Работаем с&nbsp;2020 года, всю прибыль вкладываем в&nbsp;технологии и&nbsp;в улучшение условий труда.</p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat reveal" style="--rd:0ms;">
+        <div class="stat-num"><span class="count" data-to="400">0</span><span class="suf">тыс.+</span></div>
+        <div class="stat-lab">кандидатов обработано</div>
+      </div>
+      <div class="stat reveal" style="--rd:80ms;">
+        <div class="stat-num"><span class="count" data-to="1000">0</span><span class="suf">+</span></div>
+        <div class="stat-lab">людей вышли на работу</div>
+      </div>
+      <div class="stat reveal" style="--rd:160ms;">
+        <div class="stat-num">9<span class="suf">из 10</span></div>
+        <div class="stat-lab">клиентов приходят к&nbsp;нам повторно</div>
+      </div>
+      <div class="stat reveal" style="--rd:240ms;">
+        <div class="stat-num"><span class="count" data-to="2020">0</span></div>
+        <div class="stat-lab">год основания · 5 лет на&nbsp;рынке</div>
+      </div>
+    </div>
+
+    <div class="badges reveal">
+      <div class="acc-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+        <span>Проект реализуется в экосистеме аккредитованной IT-компании и резидента &laquo;Сколково&raquo;.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== TECH ====================== -->
+<section class="tech-sec" data-screen-label="04 Технологии">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>Технологии и экспертиза</div>
+      <h2 class="h2">Рекрутмент здесь —<br/><span class="accent">это технология.</span></h2>
+      <p class="sub">Пишем свои сервисы, внедряем ИИ, автоматизируем то, что обычные агентства делают вручную. Рекрутеры работают в единой системе, не из&nbsp;личных аккаунтов.</p>
+    </div>
+
+    <div class="tech-grid">
+      <div class="tech-card reveal" style="--rd:0ms;">
+        <div class="t-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4v3H6a4 4 0 0 0-4 4v2a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4v-2a4 4 0 0 0-4-4h-2V6a4 4 0 0 0-4-4z"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg>
+        </div>
+        <h3 class="tech-h">Активно внедряем ИИ</h3>
+        <p class="tech-p"><b>Вы делаете только то, что нельзя поручить машине</b> — сами интервью.</p>
+      </div>
+      <div class="tech-card reveal" style="--rd:100ms;">
+        <div class="t-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+        </div>
+        <h3 class="tech-h">Собственная CRM</h3>
+        <p class="tech-p">Все вакансии, кандидаты, история общения — в одном месте. Не нужно жонглировать таблицами и чатами.</p>
+      </div>
+      <div class="tech-card reveal" style="--rd:200ms;">
+        <div class="t-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </div>
+        <h3 class="tech-h">Свой мессенджер</h3>
+        <p class="tech-p"><b>Никаких личных аккаунтов.</b> Пишете кандидату в Telegram или Max из одного интерфейса. Рабочий номер — не ваш, а компании.</p>
+      </div>
+      <div class="tech-card reveal" style="--rd:300ms;">
+        <div class="t-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4"/><path d="M8 3v4"/><path d="M3 11h18"/><circle cx="12" cy="16" r="2"/></svg>
+        </div>
+        <h3 class="tech-h">Планировщик &laquo;Слотто&raquo;</h3>
+        <p class="tech-p">Наш внутренний сервис рассылает кандидатам ваши свободные слоты и бронирует время. <b>Не нужно согласовывать вручную.</b></p>
+      </div>
+    </div>
+
+    <div class="tech-showcase reveal" style="--rd:120ms;">
+      <div class="showcase-text">
+        <span class="showcase-eye">Например</span>
+        <h3 class="showcase-h">«Слотто» — планировщик, который работает за&#x301; вас.</h3>
+        <p class="showcase-p">Вы выставляете слоты — система сама отправляет кандидатам ссылку на выбор времени, присылает напоминания и собирает всё в календарь. <b>Ваша роль — только провести интервью.</b></p>
+      </div>
+      <div class="slotto-mock" aria-hidden="true">
+        <div class="slm-top">
+          <div class="slm-dots"><i></i><i></i><i></i></div>
+          <div class="slm-url">Расписание создано на <b>Слотто</b></div>
+        </div>
+        <div class="slm-body">
+          <div class="slm-title">Екатерина Иванова, вас пригласили на встречу!</div>
+          <div class="slm-meta">Рекрутер (удалённо) · 30 минут · Осколкова Элина</div>
+          <div class="slm-instr"><b>Нажмите</b> на удобное время</div>
+          <div class="slm-grid">
+            <div class="slm-cal">
+              <div class="slm-cal-head"><span>Май 2026</span><span class="slm-cal-nav">‹ ›</span></div>
+              <div class="slm-cal-dow"><span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span></div>
+              <div class="slm-cal-days">
+                <span class="dim">28</span><span class="dim">29</span><span class="dim">30</span><span>1</span><span>2</span><span>3</span><span>4</span>
+                <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span>
+                <span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span>
+                <span>19</span><span>20</span><span>21</span><span class="today">22</span><span>23</span><span>24</span><span class="chosen">25</span>
+                <span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span><span class="dim">1</span>
+              </div>
+            </div>
+            <div class="slm-cols">
+              <div class="slm-col"><div class="slm-col-h"><span>Пт</span><b>22</b></div><div class="slm-col-times empty"><span>—</span><span>—</span><span>—</span><span>—</span><span>—</span></div></div>
+              <div class="slm-col"><div class="slm-col-h"><span>Сб</span><b>23</b></div><div class="slm-col-times empty"><span>—</span><span>—</span><span>—</span><span>—</span><span>—</span></div></div>
+              <div class="slm-col active"><div class="slm-col-h"><span>Пн</span><b>25</b></div><div class="slm-col-times"><button>12:45</button><button>13:05</button><button>13:25</button><button>13:45</button><button>14:05</button></div></div>
+              <div class="slm-col"><div class="slm-col-h"><span>Вт</span><b>26</b></div><div class="slm-col-times empty"><span>—</span><span>—</span><span>—</span><span>—</span><span>—</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== WORK ====================== -->
+<section class="work-sec" id="work" data-screen-label="04 Что делаете">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="background:rgba(255,255,255,0.04);color:#fff;border-color:rgba(255,255,255,0.1);"><span class="dot"></span>Что именно делаете</div>
+      <h2 class="h2">Одна задача:<br/><span class="accent">говорить с людьми.</span></h2>
+      <p class="sub">Никаких продаж, холодных звонков и поиска кандидатов. Только интервьюирование — по готовым шаблонам, по разным вакансиям, в удобное вам время.</p>
+    </div>
+
+    <div class="work-grid">
+      <div class="work-card reveal" style="--rd:0ms;">
+        <h3 class="work-h">Кандидаты приходят сами</h3>
+        <p class="work-p">Мы находим людей по вакансиям и <b>передаём вам</b> готовые контакты. Вы только договариваетесь о времени звонка.</p>
+      </div>
+      <div class="work-card reveal" style="--rd:100ms;">
+        <h3 class="work-h">Интервью по шаблону</h3>
+        <p class="work-p">У каждой вакансии — <b>готовый сценарий вопросов</b>. Вы проводите видео-интервью, фиксируете ответы, делитесь впечатлением.</p>
+      </div>
+    </div>
+
+    <div class="work-quote reveal" style="--rd:300ms;">
+      <p class="work-quote-text">
+        «Подбор персонала для нас — это <em>ремесло, искусство и сама жизнь</em>.
+        Учим разговаривать с людьми так, чтобы за 30 минут стало понятно — наш человек или нет.»
+      </p>
+      <div class="work-quote-author">— основатели Рекруто, из описания компании на hh.ru</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== GROWTH ====================== -->
+<section class="growth-sec" data-screen-label="05 Рост">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>Карьерный рост</div>
+      <h2 class="h2">За год — до <span class="accent">аккаунт-менеджера.</span></h2>
+      <p class="sub">Через год — роль куратора-аккаунт-менеджера. Следующий уровень — финансово и профессионально.</p>
+    </div>
+
+    <div class="growth-track">
+      <div class="gstep done reveal" style="--rd:0ms;">
+        <div class="gstep-bubble">1</div>
+        <div class="gstep-when">Старт</div>
+        <h4 class="gstep-h">Младший рекрутер</h4>
+        <p class="gstep-p">Интервью по шаблонам.</p>
+      </div>
+      <div class="gstep done reveal" style="--rd:100ms;">
+        <div class="gstep-bubble">2</div>
+        <div class="gstep-when">3–6 месяцев</div>
+        <h4 class="gstep-h">Уверенный интервьюер</h4>
+        <p class="gstep-p">Больше слотов — выше доход.</p>
+      </div>
+      <div class="gstep future reveal" style="--rd:200ms;">
+        <div class="gstep-bubble">3</div>
+        <div class="gstep-when">через год</div>
+        <h4 class="gstep-h">Аккаунт-менеджер</h4>
+        <p class="gstep-p">Кураторская роль.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== SALARY + CONDITIONS ====================== -->
+<section class="salary-sec" data-screen-label="06 Зарплата">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>Доход и условия</div>
+      <h2 class="h2">До&nbsp;<span class="accent">80 000&nbsp;₽</span> в&nbsp;месяц.</h2>
+    </div>
+
+    <div class="salary-chips">
+      <div class="salary-chip reveal" style="--rd:0ms;">
+        <div class="sc-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+        </div>
+        <div>
+          <b>Сдельная оплата</b>
+          <span>чем больше интервью, тем выше</span>
+        </div>
+      </div>
+      <div class="salary-chip reveal" style="--rd:80ms;">
+        <div class="sc-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="16" height="12" rx="2"/><path d="M22 9l-4 3 4 3z"/></svg>
+        </div>
+        <div>
+          <b>Технику пришлём</b>
+          <span>камера и наушники бесплатно</span>
+        </div>
+      </div>
+      <div class="salary-chip reveal" style="--rd:160ms;">
+        <div class="sc-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+        </div>
+        <div>
+          <b>Обучение</b>
+          <span>куратор с первых дней</span>
+        </div>
+      </div>
+      <div class="salary-chip reveal" style="--rd:240ms;">
+        <div class="sc-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div>
+          <b>Маленькая команда</b>
+          <span>без бюрократии</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== TASK VIDEO ====================== -->
+<section class="taskvid-sec" id="task" data-screen-label="08 Задание видео">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>Задание перед анкетой</div>
+      <h2 class="h2">Посмотрите <span class="accent">1 минуту</span><br/>и повторите фразы.</h2>
+    </div>
+
+    <div class="taskvid-grid">
+      <div class="reveal">
+        <div class="taskvid-frame">
+          <!-- fallback shows first; iframe loads on top of it -->
+          <a class="vid-fallback" href="https://drive.google.com/file/d/1vLWdV_r_X_CX1UooCvxhC8-xDtR3SBLd/view" target="_blank" rel="noopener" aria-label="Смотреть пример видео">
+            <div class="play">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div>
+              <b>Пример задания — 1 минута</b>
+              <span style="display:block; margin-top:4px;">Нажмите, чтобы посмотреть</span>
+            </div>
+          </a>
+          <iframe src="https://drive.google.com/file/d/1vLWdV_r_X_CX1UooCvxhC8-xDtR3SBLd/preview" allow="autoplay" allowfullscreen loading="lazy" title="Пример видео-задания"></iframe>
+        </div>
+        <p class="taskvid-backup">Если видео не открывается в просмотрщике — откройте <a href="https://drive.google.com/file/d/1vLWdV_r_X_CX1UooCvxhC8-xDtR3SBLd/view" target="_blank" rel="noopener">прямую ссылку на Google Drive</a>.</p>
+      </div>
+      <div class="reveal" style="--rd:120ms;">
+        <h3 class="h3">Как сделать</h3>
+        <ol class="taskvid-list">
+          <li>
+            <span class="n">1</span>
+            <div><b>Посмотрите видео</b><small>Около 1 минуты — запись с фразами.</small></div>
+          </li>
+          <li>
+            <span class="n">2</span>
+            <div><b>Повторите фразы на камеру</b></div>
+          </li>
+          <li>
+            <span class="n">3</span>
+            <div><b>Прикрепите видео в анкете ниже</b><small>MP4 / MOV / MKV.</small></div>
+          </li>
+        </ol>
+        <a href="#form" class="btn btn-primary" style="margin-top: 28px;">
+          К анкете
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== FORM ====================== -->
+<section class="form-sec" id="form" data-screen-label="07 Анкета">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="background:rgba(255,255,255,0.04);color:#fff;border-color:rgba(255,255,255,0.1);"><span class="dot"></span>Анкета · 3 минуты</div>
+      <h2 class="h2">Откликнуться.</h2>
+      <p class="sub">Оставьте контакты и запишите короткое видео по заданию выше.</p>
+    </div>
+
+    <div class="form-grid">
+      <div class="reveal">
+        <h3 class="h3" style="color:#fff; font-size: 22px;">Как заполнить</h3>
+        <ol class="form-intro-bullets">
+          <li><span class="n">1</span><div><b>Контакты</b> — полторы минуты.</div></li>
+          <li><span class="n">2</span><div><b>Видео по заданию</b> — посмотрите пример выше и повторите фразы на камеру.</div></li>
+          <li><span class="n">3</span><div><b>Свяжемся с вами</b> — по&nbsp;тому контакту, который вы укажете.</div></li>
+        </ol>
+      </div>
+
+      <div class="formbox reveal" style="--rd:160ms;">
+        <form id="apply-form" autocomplete="on" novalidate>
+          <div class="field">
+            <label for="f-name">Имя и фамилия</label>
+            <input id="f-name" name="name" type="text" placeholder="Анна Иванова" required />
+          </div>
+
+          <div class="field">
+            <label for="f-phone">Телефон, Telegram или Max</label>
+            <input id="f-phone" name="phone" type="tel" placeholder="+7 (___) ___-__-__" required />
+          </div>
+
+          <div class="field">
+            <label for="f-tg">Telegram</label>
+            <input id="f-tg" name="telegram" type="text" placeholder="@username" />
+          </div>
+
+          <div class="field">
+            <label for="f-city">Город</label>
+            <input id="f-city" name="city" type="text" placeholder="Москва, Самара, Алматы — любой" />
+          </div>
+
+          <div class="field">
+            <label for="f-age">Возраст</label>
+            <div class="slider-wrap">
+              <div class="slider-head">
+                <span style="font-size: 13px; color: rgba(255,255,255,0.6);">Сколько вам лет</span>
+                <span class="slider-val"><span id="age-val">28</span><span class="u">лет</span></span>
+              </div>
+              <input id="f-age" name="age" type="range" min="18" max="65" value="28" step="1" />
+              <div class="slider-scale"><span>18</span><span>65</span></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Сколько часов в день готовы работать</label>
+            <div class="radio-row">
+              <label class="radio-chip"><input type="radio" name="hours" value="2-4"/><span>2–4 часа</span></label>
+              <label class="radio-chip"><input type="radio" name="hours" value="4-6" checked/><span>4–6 часов</span></label>
+              <label class="radio-chip"><input type="radio" name="hours" value="6-8"/><span>6–8 часов</span></label>
+              <label class="radio-chip"><input type="radio" name="hours" value="flex"/><span>Гибко</span></label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-vk">Соцсети</label>
+            <input id="f-vk" name="vk" type="text" placeholder="ВКонтакте: ссылка или @username" style="margin-bottom:14px;"/>
+            <input id="f-inst" name="inst" type="text" placeholder="Instagram / другая соцсеть" />
+          </div>
+
+          <div class="field">
+            <label for="f-video">Ваше видео<br/>
+              <span class="hint">Повторите фразы из примера выше.</span>
+            </label>
+            <label class="video-drop" for="f-video">
+              <input id="f-video" name="video" type="file" accept="video/*" capture="user" />
+              <div class="vd-row">
+                <div class="vd-ico">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="16" height="12" rx="2"/><path d="M22 9l-4 3 4 3z"/></svg>
+                </div>
+                <div class="vd-text">
+                  <b id="vd-title">Записать или загрузить видео</b>
+                  <span id="vd-sub">Камера / галерея · до 60&nbsp;секунд · MP4 / MOV</span>
+                </div>
+              </div>
+              <div class="vd-status" id="vd-status"></div>
+            </label>
+          </div>
+
+          <div class="submit-row">
+            <button class="submit-btn" type="submit">
+              Отправить отклик
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;display:inline-block;vertical-align:middle;margin-left:8px;"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+            </button>
+            <p class="form-fine">
+              Нажимая «Отправить», вы соглашаетесь с <a href="https://recruto.ru/policy" target="_blank" rel="noopener">политикой обработки персональных данных</a>.
+            </p>
+          </div>
+        </form>
+
+        <div class="form-success" id="form-success">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+          <h3>Анкета у нас.</h3>
+          <p>Свяжемся с́ вами.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== FOOTER ====================== -->
+<footer data-screen-label="08 Footer">
+  <div class="wrap foot-inner">
+    <img src="data:image/png;base64,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" alt="Рекруто" />
+    <div class="foot-meta">© Рекруто, 2020–2026 · аккредитованная IT-компания · резидент Сколково</div>
+    <a class="foot-link" href="https://spb.hh.ru/vacancy/132857288" target="_blank" rel="noopener">
+      Вакансия на hh.ru
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+    </a>
+  </div>
+</footer>
+
+<!-- ====================== TWEAKS PANEL ====================== -->
+<div id="tweaks-panel">
+  <h4>
+    Tweaks
+    <button id="tw-close" aria-label="Закрыть">✕</button>
+  </h4>
+
+  <div class="tw-row">
+    <label>Акцентный цвет</label>
+    <div class="tw-swatches" id="tw-color"></div>
+  </div>
+
+  <div class="tw-row">
+    <label>Заголовок hero</label>
+    <div class="tw-segmented" id="tw-hero"></div>
+  </div>
+
+  <div class="tw-row">
+    <label>Превью графика</label>
+    <div class="tw-segmented" id="tw-schedule"></div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   TWEAKS configuration
+   ============================================================ */
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "accent": "#2567fc",
+  "heroVariant": "flex",
+  "scheduleVariant": "scattered"
+}/*EDITMODE-END*/;
+
+const TW = { ...TWEAK_DEFAULTS };
+
+const HERO_VARIANTS = {
+  flex: {
+    label: 'Гибкость',
+    html: `<span class="sm">Младший рекрутер · интервьюер</span>Работайте,<br/><span class="accent">когда и где</span><br/>хочется.`
+  },
+  tech: {
+    label: 'Технологии',
+    html: `<span class="sm">Младший рекрутер · интервьюер · удалённо</span>HR на стыке<br/><span class="accent">с технологиями.</span>`
+  },
+  money: {
+    label: 'Доход',
+    html: `<span class="sm">Младший рекрутер · интервьюер · удалённо</span>Удалённо,<br/>с&nbsp;доходом до&nbsp;<span class="accent">80&thinsp;000&nbsp;₽</span>`
+  }
+};
+
+const COLOR_OPTIONS = [
+  { name: 'blue', accent: '#2567fc', accent2: '#5199ff' },
+  { name: 'azure', accent: '#0084ff', accent2: '#41a5ff' },
+  { name: 'indigo', accent: '#4f46e5', accent2: '#818cf8' },
+  { name: 'teal', accent: '#0d9488', accent2: '#5eead4' }
+];
+
+/* ============================================================
+   Tweaks UI build + handlers
+   ============================================================ */
+function applyAccent(name){
+  const opt = COLOR_OPTIONS.find(o => o.name === name) || COLOR_OPTIONS[0];
+  document.documentElement.style.setProperty('--blue', opt.accent);
+  document.documentElement.style.setProperty('--blue-2', opt.accent2);
+}
+function applyHero(variant){
+  document.getElementById('hero-h1').innerHTML = HERO_VARIANTS[variant].html;
+}
+function applySchedule(variant){
+  buildSchedule(variant);
+}
+
+function buildTweaks(){
+  // Colors
+  const cwrap = document.getElementById('tw-color');
+  cwrap.innerHTML = '';
+  COLOR_OPTIONS.forEach(o => {
+    const b = document.createElement('button');
+    b.className = 'tw-sw';
+    b.style.background = o.accent;
+    b.title = o.name;
+    if(o.accent === TW.accent) b.classList.add('active');
+    b.addEventListener('click', () => {
+      TW.accent = o.accent;
+      applyAccent(o.name);
+      cwrap.querySelectorAll('.tw-sw').forEach(s => s.classList.remove('active'));
+      b.classList.add('active');
+      persist({ accent: o.accent });
+    });
+    cwrap.appendChild(b);
+  });
+
+  // Hero variants
+  const hwrap = document.getElementById('tw-hero');
+  hwrap.innerHTML = '';
+  Object.entries(HERO_VARIANTS).forEach(([k, v]) => {
+    const b = document.createElement('button');
+    b.textContent = v.label;
+    if(k === TW.heroVariant) b.classList.add('active');
+    b.addEventListener('click', () => {
+      TW.heroVariant = k;
+      applyHero(k);
+      hwrap.querySelectorAll('button').forEach(s => s.classList.remove('active'));
+      b.classList.add('active');
+      persist({ heroVariant: k });
+    });
+    hwrap.appendChild(b);
+  });
+
+  // Schedule variants
+  const swrap = document.getElementById('tw-schedule');
+  swrap.innerHTML = '';
+  ['scattered', 'evening', 'weekend'].forEach(k => {
+    const labels = { scattered: 'Свободный', evening: 'Вечерний', weekend: 'Выходные' };
+    const b = document.createElement('button');
+    b.textContent = labels[k];
+    if(k === TW.scheduleVariant) b.classList.add('active');
+    b.addEventListener('click', () => {
+      TW.scheduleVariant = k;
+      applySchedule(k);
+      swrap.querySelectorAll('button').forEach(s => s.classList.remove('active'));
+      b.classList.add('active');
+      persist({ scheduleVariant: k });
+    });
+    swrap.appendChild(b);
+  });
+}
+function persist(edits){
+  try{ window.parent.postMessage({ type: '__edit_mode_set_keys', edits }, '*'); }catch(e){}
+}
+
+/* Edit-mode message protocol */
+window.addEventListener('message', (e) => {
+  const m = e.data || {};
+  if(m.type === '__activate_edit_mode'){ document.getElementById('tweaks-panel').classList.add('open'); }
+  if(m.type === '__deactivate_edit_mode'){ document.getElementById('tweaks-panel').classList.remove('open'); }
+});
+document.getElementById('tw-close').addEventListener('click', () => {
+  document.getElementById('tweaks-panel').classList.remove('open');
+  try{ window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*'); }catch(e){}
+});
+try{ window.parent.postMessage({ type: '__edit_mode_available' }, '*'); }catch(e){}
+
+/* ============================================================
+   Schedule grid
+   ============================================================ */
+const DAYS = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+const HOURS = ['08', '11', '14', '17', '20', '23'];
+
+const SCHEDULE_DATA = {
+  scattered: [
+    [0,0,1,0,1,0,2], // 08
+    [1,2,1,0,1,1,2], // 11
+    [0,1,0,1,2,1,1], // 14
+    [1,0,2,1,0,0,0], // 17
+    [2,1,1,0,2,1,1], // 20
+    [0,0,0,2,1,2,0], // 23
+  ],
+  evening: [
+    [0,0,0,0,0,0,2], // 08
+    [0,0,0,0,0,2,2], // 11
+    [0,0,0,0,0,2,1], // 14
+    [1,2,1,2,1,1,1], // 17
+    [1,1,1,1,1,2,1], // 20
+    [1,1,1,1,1,0,0], // 23
+  ],
+  weekend: [
+    [0,0,0,0,0,1,1],
+    [0,0,0,0,0,1,1],
+    [0,0,0,0,0,2,1],
+    [0,0,0,0,0,1,1],
+    [2,2,2,2,2,1,1],
+    [0,0,0,0,1,0,0],
+  ]
+};
+
+function buildSchedule(variant){
+  const grid = document.getElementById('sch-grid');
+  grid.innerHTML = '';
+  const data = SCHEDULE_DATA[variant] || SCHEDULE_DATA.scattered;
+
+  // header row: empty + 7 days
+  const empty = document.createElement('div'); empty.className = 'sch-hour'; empty.textContent = '';
+  grid.appendChild(empty);
+  DAYS.forEach(d => {
+    const el = document.createElement('div'); el.className = 'sch-day'; el.textContent = d;
+    grid.appendChild(el);
+  });
+
+  // rows: hour + 7 cells
+  for(let h = 0; h < HOURS.length; h++){
+    const hl = document.createElement('div'); hl.className = 'sch-hour'; hl.textContent = HOURS[h];
+    grid.appendChild(hl);
+    for(let d = 0; d < 7; d++){
+      const c = document.createElement('div');
+      c.className = 'sch-cell';
+      const v = data[h][d];
+      if(v === 1) c.classList.add('on');
+      else if(v === 2) c.classList.add('maybe');
+      // small entrance delay
+      c.style.transition = 'opacity .4s ease ' + ((h*7+d)*18) + 'ms, background .2s ease';
+      c.style.opacity = '0';
+      requestAnimationFrame(() => requestAnimationFrame(() => { c.style.opacity = '1'; }));
+      grid.appendChild(c);
+    }
+  }
+}
+
+/* ============================================================
+   Sliders
+   ============================================================ */
+function yearsLabel(n){
+  if(n === 0) return 'Нет опыта';
+  if(n >= 10) return '10+ лет';
+  if(n === 1) return '1 год';
+  if(n >= 2 && n <= 4) return n + ' года';
+  return n + ' лет';
+}
+
+function setupSlider(inputId, valId, formatter){
+  const input = document.getElementById(inputId);
+  const val = document.getElementById(valId);
+  const update = () => { val.textContent = formatter(parseInt(input.value, 10)); };
+  input.addEventListener('input', update);
+  update();
+}
+
+/* ============================================================
+   Score row 0-10
+   ============================================================ */
+function buildScore(){
+  const wrap = document.getElementById('score-row');
+  for(let i = 0; i <= 10; i++){
+    const lab = document.createElement('label');
+    lab.className = 'score-cell';
+    lab.innerHTML = `<input type="radio" name="score" value="${i}"/><span>${i}</span>`;
+    wrap.appendChild(lab);
+  }
+}
+
+/* ============================================================
+   Video upload feedback
+   ============================================================ */
+function setupVideo(){
+  const input = document.getElementById('f-video');
+  const status = document.getElementById('vd-status');
+  const title = document.getElementById('vd-title');
+  const sub = document.getElementById('vd-sub');
+  input.addEventListener('change', () => {
+    const f = input.files && input.files[0];
+    if(!f) return;
+    const mb = (f.size / 1024 / 1024).toFixed(1);
+    title.textContent = '✓ Видео загружено';
+    sub.textContent = f.name + ' · ' + mb + ' МБ';
+    status.classList.add('shown');
+    status.textContent = 'Можно отправлять анкету.';
+  });
+}
+
+/* ============================================================
+   Stat counter animation
+   ============================================================ */
+function setupCounters(){
+  const els = document.querySelectorAll('.count');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if(!en.isIntersecting) return;
+      const el = en.target;
+      const to = parseInt(el.dataset.to, 10);
+      const dur = 1200;
+      const t0 = performance.now();
+      function tick(t){
+        const k = Math.min(1, (t - t0) / dur);
+        const eased = 1 - Math.pow(1 - k, 3);
+        const v = Math.round(to * eased);
+        el.textContent = (to >= 1000 && to < 100000) ? v.toLocaleString('ru-RU') : v;
+        if(k < 1) requestAnimationFrame(tick);
+        else el.textContent = (to >= 1000 && to < 100000) ? to.toLocaleString('ru-RU') : to;
+      }
+      requestAnimationFrame(tick);
+      io.unobserve(el);
+    });
+  }, { threshold: 0.4 });
+  els.forEach(el => io.observe(el));
+}
+
+/* ============================================================
+   Scroll reveal
+   ============================================================ */
+function setupReveal(){
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if(en.isIntersecting){
+        en.target.classList.add('in');
+        io.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => io.observe(el));
+}
+
+/* ============================================================
+   Form submit
+   ============================================================ */
+function setupForm(){
+  const f = document.getElementById('apply-form');
+  const ok = document.getElementById('form-success');
+  f.addEventListener('submit', (e) => {
+    e.preventDefault();
+    f.style.display = 'none';
+    ok.classList.add('shown');
+    // smooth scroll into view
+    setTimeout(() => {
+      ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 80);
+  });
+}
+
+/* ============================================================
+   Init
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  buildTweaks();
+  applyAccent(COLOR_OPTIONS.find(o => o.accent === TW.accent)?.name || 'blue');
+  applyHero(TW.heroVariant);
+  buildSchedule(TW.scheduleVariant);
+  setupSlider('f-age', 'age-val', n => n);
+  setupVideo();
+  setupCounters();
+  setupReveal();
+  setupForm();
+});
+</script>
+
+</body>
+</html>
